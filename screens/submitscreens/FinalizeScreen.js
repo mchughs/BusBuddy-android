@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, Button } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
-import Review from '../components/Review';
+import Review from '../../components/Review';
 
 class FinalizeScreen extends React.Component {
   render() {

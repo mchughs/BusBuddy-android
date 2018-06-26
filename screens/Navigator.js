@@ -5,7 +5,8 @@ import { createStackNavigator } from 'react-navigation';
 import HomeScreen from './HomeScreen';
 import SearchScreen from './SearchScreen';
 import SubmitReview from './SubmitReview';
-import FinalizeScreen from './FinalizeScreen';
+
+import FinalizeScreen from './submitscreens/FinalizeScreen';
 
 const RootStack = createStackNavigator(
   {
@@ -19,7 +20,7 @@ const RootStack = createStackNavigator(
   }
 );
 
-export default class TestNavigator extends React.Component {
+export default class Navigator extends React.Component {
   render() {
     return <RootStack />
   }

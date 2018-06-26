@@ -6,6 +6,7 @@ import LocationPicker from '../components/LocationPicker';
 import TicketPrice from '../components/TicketPrice';
 import FeaturePicker from '../components/FeaturePicker';
 import TimePicker from '../components/TimePicker';
+import Comments from '../components/Comments';
 
 class SubmitReview extends React.Component {
   constructor() {
@@ -98,6 +99,8 @@ class SubmitReview extends React.Component {
         <FeaturePicker addFeatures={this.addFeatures} features={this.state.features}/>
 
         <TimePicker addTime={this.addTime}/>
+
+        <Comments/>
 
         <Button
           title="Submit"
