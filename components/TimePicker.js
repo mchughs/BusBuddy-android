@@ -1,5 +1,6 @@
 import React from 'react';
 import { TimePickerAndroid, Text, View, TextInput, Button } from 'react-native';
+import { timeFormatter } from '../helpers.js'
 
 class TimePicker extends React.Component {
   constructor() {
@@ -16,10 +17,15 @@ class TimePicker extends React.Component {
   }
 
   async showPicker(selector) {
+    //Assumes that the ticket-time and the depart-time are either the same over very close
+    const defaultHour = selector !== 'ARRIVE_TIME' ? this.props.time.ticket_time.hour:
+                                                     this.props.time.arrive_time.hour;
+    const defaultMinute = selector !== 'ARRIVE_TIME' ? this.props.time.ticket_time.minute:
+                                                       this.props.time.arrive_time.minute;
     try {
       const {action, hour, minute} = await TimePickerAndroid.open({
-        hour: 12,
-        minute: 0,
+        hour: defaultHour,
+        minute: defaultMinute,
         is24Hour: false,
       });
       if (action !== TimePickerAndroid.dismissedAction) {
@@ -40,24 +46,28 @@ class TimePicker extends React.Component {
     let ticketColor = this.state.ticketClicked ? '#4CAF50' : '#286DA8';
     let departColor = this.state.departClicked ? '#4CAF50' : '#286DA8';
     let arriveColor = this.state.arriveClicked ? '#4CAF50' : '#286DA8';
-
     return (
-      <View>
+      <View style={{flex:1, height: 200, justifyContent: 'space-around'}}>
         <Button
           color={ticketColor}
           title="Enter the ticket depart time"
           onPress={() => this.showPicker('TICKET_TIME')}
         />
+      <Text>Ticket time: {timeFormatter(this.props.time.ticket_time)}</Text>
+
         <Button
           color={departColor}
           title="Enter the actual time of depature"
           onPress={() => this.showPicker('DEPART_TIME')}
         />
+        <Text>Depart time: {timeFormatter(this.props.time.depart_time)}</Text>
+
         <Button
           color={arriveColor}
           title="Enter the actual time of arrival"
           onPress={() => this.showPicker('ARRIVE_TIME')}
         />
+        <Text>Arrive time: {timeFormatter(this.props.time.arrive_time)}</Text>
       </View>
     );
   }

@@ -4,11 +4,26 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 
 
 class LocationPicker extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      originEntered: false,
+      destinationEntered: false,
+    };
+  }
+
   submitPlace(place, selector) {
     this.props.addPlace(place, selector);
+    console.log(place);
+    selector === 'ORIGIN' ?
+      this.setState({originEntered:true}) :
+      this.setState({destinationEntered:true}) ;
   }
 
   render() {
+    const originColor = this.state.originEntered ? '#4CAF50' : '#286DA8';
+    const destinationColor = this.state.destinationEntered ? '#4CAF50' : '#286DA8';
+
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <GooglePlacesAutocomplete
@@ -26,7 +41,8 @@ class LocationPicker extends React.Component {
           }}
           styles={{
             textInputContainer: {
-              width: '100%'
+              width: '100%',
+              backgroundColor: originColor
             },
             description: {
               fontWeight: 'bold'
@@ -48,7 +64,8 @@ class LocationPicker extends React.Component {
           }}
           styles={{
             textInputContainer: {
-              width: '100%'
+              width: '100%',
+              backgroundColor: destinationColor
             },
             description: {
               fontWeight: 'bold'

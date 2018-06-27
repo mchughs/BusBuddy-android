@@ -3,6 +3,10 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 class SearchScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Search Reviews',
+  };
+
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

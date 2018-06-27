@@ -1,8 +1,9 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View, TextInput } from 'react-native';
+import { KeyboardAvoidingView, ScrollView, Button, StyleSheet, Text, View, TextInput } from 'react-native';
 
 /*Components*/
 import LocationPicker from '../components/LocationPicker';
+import CompanyPicker from '../components/CompanyPicker';
 import TicketPrice from '../components/TicketPrice';
 import FeaturePicker from '../components/FeaturePicker';
 import TimePicker from '../components/TimePicker';
@@ -28,11 +29,14 @@ class SubmitReview extends React.Component {
         isUSB : false,
         brokedown: false,
       },
-      ticket_time: {hour: 12, minute: 0, isAM: false},
-      depart_time: {hour: 12, minute: 0, isAM: false},
-      arrive_time: {hour: 12, minute: 0, isAM: false},
+      ticket_time: {hour: 6, minute: 0, isAM: true},
+      depart_time: {hour: 6, minute: 0, isAM: true},
+      arrive_time: {hour: 6, minute: 0, isAM: true},
     };
   }
+  static navigationOptions = {
+    title: 'Submit a Review',
+  };
 
   addPlace(place, selector) {
     switch(selector) {
@@ -81,35 +85,32 @@ class SubmitReview extends React.Component {
   }
 
   render() {
-    const styles = StyleSheet.create({
-      priceInput: {
-        fontSize: 20
-      },
-    });
-
     const { navigation } = this.props;
 
     return(
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <KeyboardAvoidingView enabled style={{ flex:1 }} behavior="padding" keyboardVerticalOffset={100}>
+        <ScrollView contentContainerStyle={{paddingHorizontal: 10, paddingBottom: 10}}>
+          <LocationPicker addPlace={this.addPlace}/>
+          <View style={{justifyContent: 'center', alignItems: 'center', padding:10}}>
+            <CompanyPicker/>
+            <TicketPrice addPrice={this.addPrice}/>
+          </View>
+          <FeaturePicker addFeatures={this.addFeatures} features={this.state.features}/>
+          <TimePicker addTime={this.addTime} time={{
+              ticket_time:this.state.ticket_time,
+              depart_time:this.state.depart_time,
+              arrive_time:this.state.arrive_time}}/>
+          <Comments/>
 
-        <LocationPicker addPlace={this.addPlace}/>
-
-        <TicketPrice addPrice={this.addPrice}/>
-
-        <FeaturePicker addFeatures={this.addFeatures} features={this.state.features}/>
-
-        <TimePicker addTime={this.addTime}/>
-
-        <Comments/>
-
-        <Button
-          title="Submit"
-          onPress={() => navigation.push(
-            'Finalize',
-            { review: this.state })
-          }
-        />
-      </View>
+          <Button
+            title="Submit"
+            onPress={() => navigation.push(
+              'Finalize',
+              { review: this.state })
+            }
+          />
+        </ScrollView>
+    </KeyboardAvoidingView>
     )
   }
 }

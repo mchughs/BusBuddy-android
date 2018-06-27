@@ -3,6 +3,9 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 class HomeScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Bus Buddy',
+  };
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
