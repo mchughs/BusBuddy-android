@@ -5,7 +5,9 @@ class CompanyPicker extends React.Component {
   render() {
     return (
       <View>
-        <Text> Pick Company Here </Text>
+        {/* TODO Have the array of options passed from SubmitReview to this
+          component. Figure a way to merge picker features with TextInput features*/}
+        <Text></Text>
       </View>
     );
   }

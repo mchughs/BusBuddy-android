@@ -6,7 +6,7 @@ import HomeScreen from './HomeScreen';
 import SearchScreen from './SearchScreen';
 import SubmitReview from './SubmitReview';
 
-import FinalizeScreen from './submitscreens/FinalizeScreen';
+import FinalizeScreen from './FinalizeScreen';
 
 const RootStack = createStackNavigator(
   {

@@ -16,6 +16,7 @@ class SubmitReview extends React.Component {
     this.addPrice = this.addPrice.bind(this);
     this.addFeatures = this.addFeatures.bind(this);
     this.addTime = this.addTime.bind(this);
+    this.addComment = this.addComment.bind(this);
 
     this.state = {
       origin: '',
@@ -32,6 +33,7 @@ class SubmitReview extends React.Component {
       ticket_time: {hour: 6, minute: 0, isAM: true},
       depart_time: {hour: 6, minute: 0, isAM: true},
       arrive_time: {hour: 6, minute: 0, isAM: true},
+      comment : '',
     };
   }
   static navigationOptions = {
@@ -84,6 +86,10 @@ class SubmitReview extends React.Component {
       }
   }
 
+  addComment(comment) {
+    this.setState({comment});
+  }
+
   render() {
     const { navigation } = this.props;
 
@@ -91,16 +97,20 @@ class SubmitReview extends React.Component {
       <KeyboardAvoidingView enabled style={{ flex:1 }} behavior="padding" keyboardVerticalOffset={100}>
         <ScrollView contentContainerStyle={{paddingHorizontal: 10, paddingBottom: 10}}>
           <LocationPicker addPlace={this.addPlace}/>
+
           <View style={{justifyContent: 'center', alignItems: 'center', padding:10}}>
             <CompanyPicker/>
             <TicketPrice addPrice={this.addPrice}/>
           </View>
+
           <FeaturePicker addFeatures={this.addFeatures} features={this.state.features}/>
+
           <TimePicker addTime={this.addTime} time={{
               ticket_time:this.state.ticket_time,
               depart_time:this.state.depart_time,
               arrive_time:this.state.arrive_time}}/>
-          <Comments/>
+
+            <Comments addComment={this.addComment}/>
 
           <Button
             title="Submit"

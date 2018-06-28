@@ -53,21 +53,21 @@ class TimePicker extends React.Component {
           title="Enter the ticket depart time"
           onPress={() => this.showPicker('TICKET_TIME')}
         />
-      <Text>Ticket time: {timeFormatter(this.props.time.ticket_time)}</Text>
+      <Text style={{textAlign:'center'}}>Ticket time: {timeFormatter(this.props.time.ticket_time)}</Text>
 
         <Button
           color={departColor}
           title="Enter the actual time of depature"
           onPress={() => this.showPicker('DEPART_TIME')}
         />
-        <Text>Depart time: {timeFormatter(this.props.time.depart_time)}</Text>
+        <Text style={{textAlign:'center'}}>Depart time: {timeFormatter(this.props.time.depart_time)}</Text>
 
         <Button
           color={arriveColor}
           title="Enter the actual time of arrival"
           onPress={() => this.showPicker('ARRIVE_TIME')}
         />
-        <Text>Arrive time: {timeFormatter(this.props.time.arrive_time)}</Text>
+        <Text style={{textAlign:'center'}}>Arrive time: {timeFormatter(this.props.time.arrive_time)}</Text>
       </View>
     );
   }
