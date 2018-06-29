@@ -23,8 +23,7 @@ class Review extends React.Component {
         borderRadius: 4,
         borderWidth: 0.5,
         borderColor: '#286DA8',
-        width: '100%',
-        margin: 10
+        width: '100%'
       },
       header: {
         flexDirection: 'row',
@@ -76,8 +75,21 @@ class Review extends React.Component {
     const Breakdown = review.features.brokedown ?
       <Text>😢This bus brokedown at some point.😢</Text> :
       <Text>😁This bus did not break down!😁</Text>;
+    const CollapseText = ({ bool }) => {
+      let x = <Text> + Expand for more details </Text>;
+      if(bool){return(x)}
+      x = <Text> − Collapse for fewer details </Text>;
+      return x;
+    }
     const Collapsible = ({ bool }) => {
       let x = <View></View>;
+      let y = <View></View>;
+      if(review.comment !== ''){
+        y =
+        <View style={styles.comments}>
+          <Text style={{color: 'white'}}>{review.comment}</Text>
+        </View>
+      }
       if(bool){return(x)}
       x =
       <View style={styles.details}>
@@ -117,9 +129,7 @@ class Review extends React.Component {
         </View>
         {Breakdown}
         <Text>{'\n'}</Text>
-        <View style={styles.comments}>
-          <Text style={{color: 'white'}}>{review.comment}</Text>
-        </View>
+        {y}
       </View>
       return(x);
     }
@@ -149,7 +159,7 @@ class Review extends React.Component {
           <TouchableHighlight style={styles.expandButton}
             underlayColor = {'#e9e9e9'}
             onPress={() => {this.toggle()}}>
-          <Text> + Expand for Details </Text>
+          <CollapseText bool={this.state.isCollapsed}/>
           </TouchableHighlight>
           <Collapsible bool={this.state.isCollapsed}/>
         </View>

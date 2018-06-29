@@ -3,20 +3,19 @@ import { createStackNavigator } from 'react-navigation';
 
 /* Routes */
 import HomeScreen from './HomeScreen';
-import SearchScreen from './SearchScreen';
 import SubmitReview from './SubmitReview';
+import { SearchApp, FinalizeApp} from './Connect';
 
-import FinalizeScreen from './FinalizeScreen';
 
 const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
-    Search: SearchScreen,
+    Search: SearchApp,
     Submit: SubmitReview,
-    Finalize: FinalizeScreen,
+    Finalize: FinalizeApp,
   },
   {
-    initialRouteName: 'Submit',
+    initialRouteName: 'Search',
   }
 );
 

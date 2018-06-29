@@ -67,7 +67,9 @@ class SubmitReview extends React.Component {
 
   addTime(time, selector) {
     let t = {...this.state.ticket_time};
-      t.hour = time.hour % 12;
+      time.hour !== 12 ?
+        t.hour = time.hour % 12 :
+        t.hour = time.hour;
       t.minute = time.minute;
       t.isAM = time.hour < 12;
     switch(selector) {
