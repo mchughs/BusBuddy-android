@@ -1,5 +1,13 @@
 import React from 'react';
-import { KeyboardAvoidingView, ScrollView, Button, StyleSheet, Text, View, TextInput } from 'react-native';
+import {
+  AsyncStorage,
+  KeyboardAvoidingView,
+  ScrollView,
+  Button,
+  StyleSheet, 
+  Text, 
+  View, 
+  TextInput } from 'react-native';
 
 /*Components*/
 import LocationPicker from '../components/LocationPicker';
@@ -34,11 +42,17 @@ class SubmitReview extends React.Component {
       depart_time: {hour: 6, minute: 0, isAM: true},
       arrive_time: {hour: 6, minute: 0, isAM: true},
       comment : '',
+      uid: '',
     };
   }
   static navigationOptions = {
     title: 'Submit a Review',
   };
+
+  componentDidMount() {
+    AsyncStorage.getItem("userToken")
+      .then((uid) => this.setState({ uid }) )
+  }
 
   addPlace(place, selector) {
     switch(selector) {

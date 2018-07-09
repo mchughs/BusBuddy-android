@@ -1,13 +1,15 @@
 import React from 'react';
-import { createStackNavigator } from 'react-navigation';
+import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
 
 /* Routes */
 import HomeScreen from './HomeScreen';
 import SubmitReview from './SubmitReview';
 import { SearchApp, FinalizeApp} from './Connect';
+import AuthLoadingScreen from './AuthLoadingScreen';
+import SignInScreen from './SignInScreen';
 
 
-const RootStack = createStackNavigator(
+const AppStack = createStackNavigator(
   {
     Home: HomeScreen,
     Search: SearchApp,
@@ -15,7 +17,20 @@ const RootStack = createStackNavigator(
     Finalize: FinalizeApp,
   },
   {
-    initialRouteName: 'Search',
+    initialRouteName: 'Home',
+  }
+);
+
+const AuthStack = createStackNavigator({ SignIn: SignInScreen });
+
+const RootStack = createSwitchNavigator(
+  {
+    AuthLoading: AuthLoadingScreen,
+    App: AppStack,
+    Auth: AuthStack,
+  },
+  {
+    initialRouteName: 'AuthLoading',
   }
 );
 

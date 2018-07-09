@@ -10,6 +10,24 @@ export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+export function toMinutes(a, value) {
+  let aTime = 0;
+  switch(value) {
+    case 'depart':
+      const aDepartHour = a.depart_time.isAM ? a.depart_time.hour : a.depart_time.hour + 12;
+      aTime = aDepartHour*60 + a.depart_time.minute;
+      break;
+    case 'arrive':
+      const aArriveHour = a.arrive_time.isAM ? a.arrive_time.hour : a.arrive_time.hour + 12;
+      aTime = aArriveHour*60 + a.arrive_time.minute;
+      break;
+    default:
+      console.log('Value not passed to helper toMinutes function');
+      break;
+  }
+  return aTime;
+}
+
 export function elapsedTime(t1 , t2) {
   // Convert to 24h
   const a = t1.hour !== 12 ?

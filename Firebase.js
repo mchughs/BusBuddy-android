@@ -9,5 +9,8 @@ const config = {
 };
 firebase.initializeApp(config);
 
+// Removes the 'Setting a timer' pop-up warning caused by Expo and FireBase
+console.ignoredYellowBox = ['Setting a timer'];
+
 export const reviewBase = firebase.database().ref('reviews/')
 export const companyBase = firebase.database().ref('companies/')
