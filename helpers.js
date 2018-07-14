@@ -31,10 +31,10 @@ export function toMinutes(a, value) {
 export function elapsedTime(t1 , t2) {
   // Convert to 24h
   const a = t1.hour !== 12 ?
-    (t1.AM ? t1.hour : t1.hour+12) :
+    (t1.isAM ? t1.hour : t1.hour+12) :
     t1.hour;
   const b = t2.hour !== 12 ?
-    (t2.AM ? t2.hour : t2.hour+12) :
+    (t2.isAM ? t2.hour : t2.hour+12) :
     t2.hour;
   // Convert to minutes
   const t1_new = a*60 + t1.minute;

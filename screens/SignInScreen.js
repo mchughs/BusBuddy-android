@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, StyleSheet, TextInput, Button, AsyncStorage, View } from 'react-native';
+import { Text, KeyboardAvoidingView, Alert, StyleSheet, TextInput, Button, AsyncStorage, View } from 'react-native';
 import firebase from 'firebase';
 
 class SignInScreen extends React.Component {
@@ -9,10 +9,15 @@ class SignInScreen extends React.Component {
 
   constructor () {
     super();
-    this.state = { email: '', password: '' };
+    this.state = {
+      email: '',
+      password: '',
+      isloading: false,
+    };
   }
 
   handleLogin(e) {
+    this.setState({isloading:true});
     e.preventDefault();
     const { email, password } = this.state;
     const auth = firebase.auth();
@@ -23,17 +28,50 @@ class SignInScreen extends React.Component {
         this.props.navigation.navigate('App');
       });
     promise.catch(
-      e => console.log(e)
+      e => {Alert.alert('Warning', e.message); this.setState({isloading:false})}
     );
   }
 
   handleSignup(e) {
+    this.setState({isloading:true});
     e.preventDefault();
     const { email, password } = this.state;
     const auth = firebase.auth();
     const promise = auth.createUserWithEmailAndPassword(email, password);
-    promise.then(e => Alert.alert('Thanks for signing up! Please click the Log in button!'));
-    promise.catch(e => console.log(e));
+    promise.then(e => {
+      Alert.alert('Thanks for signing up!');
+      const p = auth.signInWithEmailAndPassword(email, password);
+      p.then(
+        e => {
+          AsyncStorage.setItem('userToken', email);
+          this.props.navigation.navigate('App');
+        });
+    });
+    promise.catch(
+      e => {Alert.alert('Warning', e.message); this.setState({isloading:false})}
+    );
+  }
+
+  handleGuestLogin(e) {
+    this.setState({isloading:true});
+    e.preventDefault();
+    Alert.alert('Warning', 'As a guest you will not be able to submit reviews!');
+    const email = 'guest@gmail.com';
+    const password = 'nopass1234';
+    const auth = firebase.auth();
+    const promise = auth.signInWithEmailAndPassword(email, password);
+    promise.then(
+      e => {
+        AsyncStorage.setItem('userToken', email);
+        this.props.navigation.navigate('App');
+      });
+    promise.catch(
+      e => {Alert.alert('Warning', e.message); this.setState({isloading:false})}
+    );
+  }
+
+  handlePasswordReset() {
+    this.props.navigation.navigate('PasswordReset');
   }
 
   render() {
@@ -52,9 +90,16 @@ class SignInScreen extends React.Component {
         borderColor: 'black',
         marginBottom: 10,
       },
+      forgotPass: {
+        width: 200,
+        color:'blue',
+        textAlign:'right',
+        textDecorationLine:'underline',
+        marginBottom: 20,
+      },
     })
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <TextInput
          value={this.state.email}
          onChangeText={(email) => this.setState({ email })}
@@ -69,19 +114,33 @@ class SignInScreen extends React.Component {
          secureTextEntry={true}
          style={styles.input}
         />
-      <View style={{flexDirection:'row'}}>
+        <Text style={styles.forgotPass} onPress={() => this.handlePasswordReset()}>
+          Forgot password?
+        </Text>
+        <View style={{flexDirection: 'row', alignSelf:'flex-start',}}>
+           <View style={{flex:1, margin:10}}>
+            <Button
+             title={'Log in'}
+             onPress={(e) => {this.handleLogin(e)}}
+             disabled={this.state.isloading}
+            />
+          </View>
+          <View style={{flex:1, margin:10}}>
+            <Button
+             title={'Sign up'}
+             onPress={(e) => {this.handleSignup(e)}}
+             disabled={this.state.isloading}
+            />
+          </View>
+        </View>
+        <View style={{marginTop: 10, width: '50%',}}>
           <Button
-           title={'Log in'}
-           style={styles.input}
-           onPress={(e) => {this.handleLogin(e)}}
-          />
-          <Button
-           title={'Sign up'}
-           style={styles.input}
-           onPress={(e) => {this.handleSignup(e)}}
+           title={'Guest Login'}
+           onPress={(e) => {this.handleGuestLogin(e)}}
+           disabled={this.state.isloading}
           />
         </View>
-     </View>
+     </KeyboardAvoidingView>
     );
   }
 }

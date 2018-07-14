@@ -1,6 +1,5 @@
 import React from 'react';
 import { Alert, AsyncStorage, Picker, TextInput, ScrollView, Text, View, Button } from 'react-native';
-import { StackNavigator } from 'react-navigation';
 import { toMinutes } from '../helpers';
 import Review from '../components/Review';
 
@@ -106,6 +105,14 @@ class SearchScreen extends React.Component {
           const bTime = toMinutes(b, 'arrive') - toMinutes(b, 'depart');
           return (aTime - bTime)});
         break;
+      case 'best':
+        reviews = Object.values(this.props.reviews).sort(function(a, b) {
+          return (b.starCount - a.starCount)});
+        break;
+      case 'worst':
+        reviews = Object.values(this.props.reviews).sort(function(a, b) {
+          return (a.starCount - b.starCount)});
+        break;
       default:
         reviews = Object.values(this.props.reviews).reverse();
         break;
@@ -126,15 +133,19 @@ class SearchScreen extends React.Component {
             <Picker.Item label="Oldest Submitted" value="old" />
             <Picker.Item label="Leave Earliest" value="early" />
             <Picker.Item label="Fastest Journey" value="fast" />
+            <Picker.Item label="Best Rated" value="best" />
+            <Picker.Item label="Worst Rated" value="worst" />
           </Picker>
         </View>
         <View style={{flexDirection: 'row'}}>
           <TextInput style={{width: '50%', fontSize: 20}}
             placeholder='Leaving from...'
+            underlineColorAndroid={'rgba(0,0,0,0)'}
             onChangeText={(origin) => {this.changeOrigin(origin)}}>
           </TextInput>
           <TextInput style={{width: '50%', fontSize: 20}}
             placeholder='Arriving to...'
+            underlineColorAndroid={'rgba(0,0,0,0)'}
             onChangeText={(destination) => {this.changeDestination(destination)}}>
           </TextInput>
         </View>

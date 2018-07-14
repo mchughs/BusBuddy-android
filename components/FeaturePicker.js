@@ -25,7 +25,7 @@ class FeaturePicker extends React.Component {
           <Switch onValueChange={(value) => this.toggle(value, 'isCurtains')} value={features.isCurtains}/>
           <Switch onValueChange={(value) => this.toggle(value, 'isUSB')} value={features.isUSB}/>
           <Switch onValueChange={(value) => this.toggle(value, 'brokedown')} value={features.brokedown}/>
-        </View>      
+        </View>
       </View>
     );
   }

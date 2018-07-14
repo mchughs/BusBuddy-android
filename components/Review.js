@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableHighlight, StyleSheet, Text, View, TextInput } from 'react-native';
 import { numberWithCommas, timeFormatter, elapsedTime } from '../helpers';
+import StarRating from 'react-native-star-rating';
 
 class Review extends React.Component {
   constructor() {
@@ -62,7 +63,8 @@ class Review extends React.Component {
         paddingRight: 5
       },
       features: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        padding:10
       },
       comments: {
         backgroundColor:'#6D7993',
@@ -100,13 +102,20 @@ class Review extends React.Component {
             <Text>Ticket time:</Text>
           </View>
           <View style={styles.values}>
-            <Text>Company Here</Text>
+            <Text>{review.company}</Text>
             <Text>{numberWithCommas(review.price)} TSH</Text>
             <Text>{timeFormatter(review.ticket_time)}</Text>
           </View>
         </View>
         <Text>{'\n'}</Text>
-        <Text>This bus has...</Text>
+        <StarRating
+          disabled={true}
+          maxStars={5}
+          rating={review.starCount}
+          fullStarColor='#00a3dd'
+        />
+        <Text>{'\n'}</Text>
+        <Text style={{fontSize:15}}>This bus has...</Text>
         <View style={styles.features}>
           <View style={styles.titles}>
             <Text>AC?</Text>
@@ -114,17 +123,17 @@ class Review extends React.Component {
             <Text>USB charging?</Text>
           </View>
           <View style={styles.values}>
-            <Text style={this.featureStyle(review.isAC)}>{review.features.isAC ? '👍' : '✗'}</Text>
-            <Text style={this.featureStyle(review.isMovies)}>{review.features.isMovies ? '👍' : '✗'}</Text>
-            <Text style={this.featureStyle(review.isUS)}>{review.features.isUSB ? '👍' : '✗'}</Text>
+            <Text style={this.featureStyle(review.features.isAC)}>{review.features.isAC ? 'Yes' : 'No'}</Text>
+            <Text style={this.featureStyle(review.features.isMovies)}>{review.features.isMovies ? 'Yes' : 'No'}</Text>
+            <Text style={this.featureStyle(review.features.isUS)}>{review.features.isUSB ? 'Yes' : 'No'}</Text>
           </View>
           <View style={styles.titles}>
             <Text>Music Videos?</Text>
             <Text>Curtains?</Text>
           </View>
           <View style={styles.values}>
-            <Text style={this.featureStyle(review.isMusicVideos)}>{review.features.isMusicVideos ? '👍' : '✗'}</Text>
-            <Text style={this.featureStyle(review.isCurtains)}>{review.features.isCurtains ? '👍' : '✗'}</Text>
+            <Text style={this.featureStyle(review.features.isMusicVideos)}>{review.features.isMusicVideos ? 'Yes' : 'No'}</Text>
+            <Text style={this.featureStyle(review.features.isCurtains)}>{review.features.isCurtains ? 'Yes' : 'No'}</Text>
           </View>
         </View>
         {Breakdown}

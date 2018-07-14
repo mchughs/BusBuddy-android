@@ -4,10 +4,12 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Button,
-  StyleSheet, 
-  Text, 
-  View, 
+  StyleSheet,
+  Text,
+  View,
   TextInput } from 'react-native';
+
+import StarRating from 'react-native-star-rating';
 
 /*Components*/
 import LocationPicker from '../components/LocationPicker';
@@ -18,10 +20,11 @@ import TimePicker from '../components/TimePicker';
 import Comments from '../components/Comments';
 
 class SubmitReview extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.addPlace = this.addPlace.bind(this);
     this.addPrice = this.addPrice.bind(this);
+    this.addCompany = this.addCompany.bind(this);
     this.addFeatures = this.addFeatures.bind(this);
     this.addTime = this.addTime.bind(this);
     this.addComment = this.addComment.bind(this);
@@ -30,6 +33,7 @@ class SubmitReview extends React.Component {
       origin: '',
       destination: '',
       price: 0,
+      company: 'ABOOD', //default company should be the top listed alphabetically
       features: {
         isAC : false,
         isMusicVideos : false,
@@ -41,6 +45,7 @@ class SubmitReview extends React.Component {
       ticket_time: {hour: 6, minute: 0, isAM: true},
       depart_time: {hour: 6, minute: 0, isAM: true},
       arrive_time: {hour: 6, minute: 0, isAM: true},
+      starCount: 0,
       comment : '',
       uid: '',
     };
@@ -64,6 +69,10 @@ class SubmitReview extends React.Component {
 
   addPrice(price) {
     this.setState({price});
+  }
+
+  addCompany(company) {
+    this.setState({company});
   }
 
   addFeatures(value, selector) {
@@ -102,6 +111,12 @@ class SubmitReview extends React.Component {
       }
   }
 
+  onStarRatingPress(rating) {
+    this.setState({
+      starCount: rating
+    });
+  }
+
   addComment(comment) {
     this.setState({comment});
   }
@@ -115,7 +130,11 @@ class SubmitReview extends React.Component {
           <LocationPicker addPlace={this.addPlace}/>
 
           <View style={{justifyContent: 'center', alignItems: 'center', padding:10}}>
-            <CompanyPicker/>
+            <CompanyPicker company={this.state.company}
+               addCompany={this.addCompany}
+               addToDataBase={this.props.addCompany}
+               fetchCompanies={this.props.fetchCompanies}
+               companies={this.props.companies}/>
             <TicketPrice addPrice={this.addPrice}/>
           </View>
 
@@ -126,7 +145,18 @@ class SubmitReview extends React.Component {
               depart_time:this.state.depart_time,
               arrive_time:this.state.arrive_time}}/>
 
-            <Comments addComment={this.addComment}/>
+          <View style={{justifyContent: 'center', alignItems: 'center', marginTop:20, flexDirection: 'row'}}>
+            <Text style={{fontSize:20, paddingRight:10}}>Safiness Rating:</Text>
+            <StarRating
+              disabled={false}
+              maxStars={5}
+              rating={this.state.starCount}
+              fullStarColor='#00a3dd'
+              selectedStar={(rating) => this.onStarRatingPress(rating)}
+            />
+          </View>
+
+          <Comments addComment={this.addComment}/>
 
           <Button
             title="Submit"
