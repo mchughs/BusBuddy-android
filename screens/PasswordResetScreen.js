@@ -22,7 +22,7 @@ class PasswordResetScreen extends React.Component {
       e => {
         Alert.alert('Success',
         'An email has been sent to your account to reset your password.');
-        this.props.navigation.navigate('Auth');
+        this.props.navigation.navigate('LogIn');
       });
     promise.catch(
       e => {Alert.alert('Warning', e.message); this.setState({isloading:false})}

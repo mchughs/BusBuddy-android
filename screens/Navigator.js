@@ -6,7 +6,8 @@ import HomeScreen from './HomeScreen';
 import SubmitReview from './SubmitReview';
 import { SearchApp, SubmitApp, FinalizeApp} from './Connect';
 import AuthLoadingScreen from './AuthLoadingScreen';
-import SignInScreen from './SignInScreen';
+import LogInScreen from './LogInScreen';
+import SignUpScreen from './SignUpScreen';
 import AppIntroScreen from './AppIntroScreen';
 import PasswordResetScreen from './PasswordResetScreen';
 
@@ -16,6 +17,7 @@ const AppStack = createStackNavigator(
     Search: SearchApp,
     Submit: SubmitApp,
     Finalize: FinalizeApp,
+    Intro: AppIntroScreen,
   },
   {
     initialRouteName: 'Home',
@@ -24,11 +26,12 @@ const AppStack = createStackNavigator(
 
 const AuthStack = createStackNavigator(
   {
-    SignIn: SignInScreen,
+    LogIn: LogInScreen,
+    SignUp: SignUpScreen,
     PasswordReset: PasswordResetScreen,
   },
   {
-    initialRouteName: 'SignIn',
+    initialRouteName: 'LogIn',
   }
 );
 
@@ -37,7 +40,6 @@ const RootStack = createSwitchNavigator(
     AuthLoading: AuthLoadingScreen,
     App: AppStack,
     Auth: AuthStack,
-    Intro: AppIntroScreen,
   },
   {
     initialRouteName: 'AuthLoading',

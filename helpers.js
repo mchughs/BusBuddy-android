@@ -1,7 +1,9 @@
+import _ from "lodash";
+
 export function timeFormatter(time) {
   let str = '';
-  str += time.hour.toString().padStart(2,'0') + ':';
-  str += time.minute.toString().padStart(2,'0') + ' ';
+  str += _.padStart(time.hour.toString(), 2, '0') + ':';
+  str += _.padStart(time.minute.toString(), 2,'0') + ' ';
   str += (time.isAM) ? 'AM' : 'PM';
   return str;
 }

@@ -11,12 +11,10 @@ export function fetchReviews(){
   }
 }
 
-// add review
 export function addReview(review) {
   return dispatch => reviewBase.push(review)
 }
 
-// remove review
 export function removeReview(reviewId) {
   return dispatch => reviewBase.child(reviewId).remove();
 }
@@ -35,7 +33,3 @@ export function fetchCompanies(){
 export function addCompany(company) {
   return dispatch => companyBase.push(company)
 }
-
-// export function removeCompany(companyId) {
-//   return dispatch => companyBase.child(companyId).remove();
-// }

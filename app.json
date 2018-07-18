@@ -1,5 +1,15 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "sdkVersion": "27.0.0",
+    "name": "Bus Buddy",
+    "icon": "./images/tanzania-road-flag.png",
+    "description": "Bus Buddy App for Peace Corps Volunteers in Tanzania (Beta)",
+    "version": "1.0.3 beta",
+    "orientation": "portrait",
+    "android": {
+      "package": "com.SamuelMcHugh.BusBuddy",
+      "versionCode": 2,
+      "permissions": [],
+    }
   }
 }

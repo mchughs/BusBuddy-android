@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableHighlight, AsyncStorage, StyleSheet, Text, View} from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import { Ionicons } from '@expo/vector-icons';
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -54,6 +55,9 @@ class HomeScreen extends React.Component {
         height: '40%',
         backgroundColor: '#00a3dd'
       },
+      icon: {
+        backgroundColor: 'transparent'
+      }
     });
     return (
       <View style={styles.container}>
@@ -62,6 +66,15 @@ class HomeScreen extends React.Component {
         <View style={styles.rectangleBlack}/>
         <View style={styles.rectangleYellow}/>
         <View style={styles.rectangleBlue}/>
+        <TouchableHighlight
+          style={{position: 'absolute', left: '90%'}}
+          onPress={() => this.props.navigation.navigate('Intro')}>
+          <Ionicons
+            style={styles.icon}
+            name={'ios-information-circle-outline'}
+            size={40}
+            color="white" />
+        </TouchableHighlight>
         <TouchableHighlight
           style={[styles.touchable, {top: '20%'}]}
           onPress={() => this.props.navigation.navigate('Search')}>
