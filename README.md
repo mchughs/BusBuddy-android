@@ -1,4 +1,14 @@
+## Demo
+### Logging in
 <img src="./example-gifs/login.gif" width="270" height="480" />
+### App information
+<img src="./example-gifs/intro.gif" width="270" height="480" />
+### Writing a review
+<img src="./example-gifs/submit.gif" width="270" height="480" />
+### Submitting a review
+<img src="./example-gifs/finalize.gif" width="270" height="480" />
+### Searching reviews
+<img src="./example-gifs/search.gif" width="270" height="480" />
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
