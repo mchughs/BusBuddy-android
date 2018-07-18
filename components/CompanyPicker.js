@@ -1,5 +1,5 @@
 import React from 'react';
-import { Picker, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Picker, Text, View, TextInput } from 'react-native';
 import Autocomplete from 'react-native-autocomplete-input';
 
 class CompanyPicker extends React.Component {
@@ -37,6 +37,16 @@ class CompanyPicker extends React.Component {
   }
 
   render() {
+    const styles = StyleSheet.create({
+      container: {
+        flex: 2,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        padding: 5,
+        width: '100%',
+      }
+    });
+
     const options = Object.values(this.props.companies).sort(this.compare)
       .map((company, i) =>
         <Picker.Item key={i} label={company.label} value={company.value}/>
@@ -53,7 +63,7 @@ class CompanyPicker extends React.Component {
           {options}
         </Picker>
         <TextInput
-            style={{ flex: 2 }}
+            style={styles.container}
             placeholder='(Optional) Add unlisted company'
             onSubmitEditing={(newCompany) => this.handleChange(newCompany.nativeEvent.text)}
         />

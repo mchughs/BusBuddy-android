@@ -125,7 +125,7 @@ class Review extends React.Component {
           <View style={styles.values}>
             <Text style={this.featureStyle(review.features.isAC)}>{review.features.isAC ? 'Yes' : 'No'}</Text>
             <Text style={this.featureStyle(review.features.isMovies)}>{review.features.isMovies ? 'Yes' : 'No'}</Text>
-            <Text style={this.featureStyle(review.features.isUS)}>{review.features.isUSB ? 'Yes' : 'No'}</Text>
+            <Text style={this.featureStyle(review.features.isUSB)}>{review.features.isUSB ? 'Yes' : 'No'}</Text>
           </View>
           <View style={styles.titles}>
             <Text>Music Videos?</Text>
