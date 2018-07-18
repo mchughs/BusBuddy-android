@@ -7,9 +7,11 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput } from 'react-native';
+  TextInput
+} from 'react-native';
 
 import StarRating from 'react-native-star-rating';
+import { elapsedTimeInt } from '../helpers';
 
 /*Components*/
 import LocationPicker from '../components/LocationPicker';

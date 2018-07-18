@@ -1,5 +1,7 @@
 import React from 'react';
-import { Text, KeyboardAvoidingView, Alert, StyleSheet, TextInput, Button, AsyncStorage, View } from 'react-native';
+import {
+  Text, KeyboardAvoidingView, Alert, StyleSheet, TextInput, Button, AsyncStorage, View
+} from 'react-native';
 import firebase from 'firebase';
 
 class LogInScreen extends React.Component {

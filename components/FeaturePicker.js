@@ -1,5 +1,7 @@
 import React from 'react';
-import { Switch, Text, View } from 'react-native';
+import {
+  Switch, Text, View,
+} from 'react-native';
 
 class FeaturePicker extends React.Component {
   toggle(value, selector) {

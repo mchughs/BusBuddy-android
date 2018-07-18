@@ -1,10 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import {
+  Text, TextInput, View,
+} from 'react-native';
 
 class Comments extends React.Component {
   submitComment(comment) {
     this.props.addComment(comment);
   }
+
   render() {
     return (
       <View style={{flex:1}}>

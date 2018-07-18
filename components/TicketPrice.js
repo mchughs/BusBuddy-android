@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import {
+  StyleSheet, TextInput, View,
+} from 'react-native';
 
 class TicketPrice extends React.Component {
   constructor() {

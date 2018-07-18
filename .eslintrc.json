@@ -1,0 +1,10 @@
+{
+    "extends": "airbnb",
+    "rules": {
+      "sort-imports": ["error", {
+        "ignoreCase": false,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": ["none", "all", "single", "multiple"]
+      }]
+    }
+}

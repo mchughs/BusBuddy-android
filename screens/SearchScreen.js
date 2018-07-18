@@ -16,8 +16,6 @@ class SearchScreen extends React.Component {
     this.state = {
       origin : '',
       destination : '',
-      before: {'hours': 11, 'minutes': 59, 'AM': false},
-      after: {'hours': 0, 'minutes': 0, 'AM': true},
       uid: '',
       sort: 'early',
     }

@@ -1,38 +1,37 @@
 import React from 'react';
-import { StyleSheet, Picker, Text, View, TextInput } from 'react-native';
-import Autocomplete from 'react-native-autocomplete-input';
+import {
+  Picker, StyleSheet, TextInput, View,
+} from 'react-native';
 
 class CompanyPicker extends React.Component {
   componentDidMount() {
-    this.props.fetchCompanies();
+    this.props.fetchCompanies()
   }
 
-  handleChange = (newCompany) => {
+  handleChange(newCompany) {
     // If the user has deleted their selection, exit
-    if (newCompany === null ) {return;}
+    if (newCompany === null) { return; }
 
     const inputCompany = {
       label: newCompany.toUpperCase(),
       value: newCompany.toUpperCase(),
-    }
-    this.props.addCompany(inputCompany.value);
+    };
+    this.props.addCompany(inputCompany.value)
     // Double check the user-submitted company is not in the list,
     // then add it to the database
     const pos = Object.values(this.props.companies)
-                  .map((company) => company.value)
-                  .indexOf(inputCompany.value);
+      .map((company) => company.value)
+      .indexOf(inputCompany.value);
 
-    if(pos < 0) {
-      const company = { value:inputCompany.value, label:inputCompany.value }
+    if (pos < 0) {
+      const company = { value: inputCompany.value, label: inputCompany.value };
       this.props.addToDataBase(company);
     }
   }
 
-  compare(a,b) {
-    if (a.value < b.value)
-      return -1;
-    if (a.value > b.value)
-      return 1;
+  compare(a, b) {
+    if (a.value < b.value) { return -1 }
+    if (a.value > b.value) { return 1 }
     return 0;
   }
 
@@ -44,7 +43,7 @@ class CompanyPicker extends React.Component {
         borderRadius: 10,
         padding: 5,
         width: '100%',
-      }
+      },
     });
 
     const options = Object.values(this.props.companies).sort(this.compare)
@@ -63,9 +62,9 @@ class CompanyPicker extends React.Component {
           {options}
         </Picker>
         <TextInput
-            style={styles.container}
-            placeholder='(Optional) Add unlisted company'
-            onSubmitEditing={(newCompany) => this.handleChange(newCompany.nativeEvent.text)}
+          style={styles.container}
+          placeholder='(Optional) Add unlisted company'
+          onSubmitEditing={(newCompany) => this.handleChange(newCompany.nativeEvent.text)}
         />
       </View>
     );

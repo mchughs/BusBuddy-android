@@ -1,7 +1,10 @@
 import React from 'react';
-import { TouchableHighlight, StyleSheet, Text, View, TextInput } from 'react-native';
-import { numberWithCommas, timeFormatter, elapsedTime } from '../helpers';
 import StarRating from 'react-native-star-rating';
+import {
+  StyleSheet, Text, TouchableHighlight, View,
+} from 'react-native';
+import { elapsedTime, numberWithCommas, timeFormatter } from '../helpers';
+
 
 class Review extends React.Component {
   constructor() {

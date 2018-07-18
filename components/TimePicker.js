@@ -1,6 +1,8 @@
 import React from 'react';
-import { TimePickerAndroid, Text, View, TextInput, Button } from 'react-native';
-import { timeFormatter } from '../helpers.js'
+import {
+  Button, Text, TimePickerAndroid, View,
+} from 'react-native';
+import { timeFormatter } from '../helpers';
 
 class TimePicker extends React.Component {
   constructor() {
