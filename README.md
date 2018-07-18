@@ -1,4 +1,4 @@
-<img src="./example-gifs/login.gif" width="540" height="960" />
+<img src="./example-gifs/login.gif" width="270" height="480" />
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
