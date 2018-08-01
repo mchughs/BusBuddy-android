@@ -8,7 +8,7 @@
     "orientation": "portrait",
     "android": {
       "package": "com.SamuelMcHugh.BusBuddy",
-      "versionCode": 2,
+      "versionCode": 3,
       "permissions": [],
     }
   }
