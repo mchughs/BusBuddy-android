@@ -1,13 +1,30 @@
+## Available on the Google Play Store [here](https://play.google.com/store/apps/details?id=com.SamuelMcHugh.BusBuddy)
+
 ## Demo
-### Logging in
+
+### `Logging in`
+
+Authentication is handled through Google Firebase.
+
 <img src="./example-gifs/login.gif" width="270" height="480" />
-### App information
+
+### `App information`
 <img src="./example-gifs/intro.gif" width="270" height="480" />
-### Writing a review
+
+### `Writing a review`
 <img src="./example-gifs/submit.gif" width="270" height="480" />
-### Submitting a review
+
+### `Submitting a review`
 <img src="./example-gifs/finalize.gif" width="270" height="480" />
-### Searching reviews
+
+### `Searching reviews`
+
+Reviews can be filtered by departing location and arriving location.
+
+Reviews can also be sorted according to various different parameters.
+
+Only reviews which the user has submitted will show a delete button.
+
 <img src="./example-gifs/search.gif" width="270" height="480" />
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
